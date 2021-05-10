@@ -9,11 +9,13 @@ html {
 }
 
 body {
-    font: 10pt 'Raleway', sans-serif;
-    color: black;
-    margin: 0;
+    font-family: 'Titillium Web', sans-serif;
+    background-color: white;
+    color: darkslategray;
     min-height: 100vh;
-    background: white url(https://source.unsplash.com/uXtq8xGUX5U) center center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 a {
@@ -106,3 +108,44 @@ a:hover .vizitka {
     margin: 1em;
     box-shadow: 5px 5px 10px black;
 }
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    text-align: center;
+}
+
+.objednavka {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    padding: 20px;
+    border: 1px solid silver;
+    border-radius: 10px;
+    background-color: aliceblue;
+    box-shadow: 0 0 10px darkgray;
+}
+
+.objednavka .radek {
+    display: block;
+    margin-top: 1em;
+}
+
+.objednavka .skupina {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 15px;
+
+}
+
+.objednavka .controls.radek {
+    display: flex;
+    justify-content: center;
+}
+
+

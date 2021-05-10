@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="cs" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrace</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+<div class="container">
+    <h1>Registrace</h1>
+    <form class="objednavka">
+        <div>
+            Vaše registrace s číslem <strong th:text="${kod}">12346</strong> byla vytvořena.
+        </div>
+
+        <div>
+          <span th:unless="${#strings.isEmpty(email)}">Na e-mail <span th:text="${email}">zakaznik@example.com</span> byla zaslána rekapitulace Vaší registrace.</span>
+        </div>
+        <div>
+            <span th:unless="${#strings.isEmpty(telefon)}">Na Váš telefon <span th:text="${telefon}"></span> byla zaslána rekapitulace Vaší registrace.</span>
+        </div>
+
+
+
+<label for="jmeno" class="radek">Jméno účastníka:</label>
+<span id="jmeno" type="text" th:text="${form.jmeno}"></span>
+
+<label for="prijmeni" class="radek">Příjmení účastníka:</label>
+<span id="prijmeni" type="text" th:text="${form.prijmeni}"></span>
+
+<label for="datum-narozeni" class="radek">Datum narození účastníka: </label>
+<span id="datum-narozeni" type="text" th:text="${form.datum}"></span>
+
+<label for="pohlavi" class="radek">Pohlaví:</label>
+<span id="pohlavi" type="text" th:text="${form.pohlavi}"></span>
+
+<label for="sporty" class="radek">Vybrané sporty:</label>
+<span id="sporty" type="text" th:each="sport: ${form.sporty}">
+  <span th:text="${sport.name()}"></span>
+</span>
+
+<label for="turnus" class="radek">Turnus:</label>
+<span id="turnus" name="turnus" th:field="${form.turnus}">
+        <span th:if="${form.turnus == '1'}">5.7. - 11.7. 2021</span>
+        <span th:if="${form.turnus == '2'}">12.7. - 18.7. 2021</span>
+        <span th:if="${form.turnus == '3'}">19.7. - 25.7. 2021</span>
+        </span>
+</form>
+</div>
+</body>
+</html>
