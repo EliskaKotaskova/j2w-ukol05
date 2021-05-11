@@ -20,8 +20,8 @@
         <input id="prijmeni" type="text" th:field="${form.prijmeni}"/>
         <div class="error" th:if="${#fields.hasErrors('form.prijmeni')}" th:errors="${form.prijmeni}"></div>
 
-        <label for="datum-narozeni" class="radek">Datum narození účastníka ve formátu (dd.MM.yyyy):</label>
-        <input id="datum-narozeni" type="text" th:field="${form.datum}"/>
+        <label for="datum-narozeni" class="radek">Datum narození účastníka:</label>
+        <input id="datum-narozeni" type="date" th:field="${form.datum}"/>
         <div class="error" th:if="${#fields.hasErrors('form.datum')}" th:errors="${form.datum}"></div>
 
         <div class="skupina">

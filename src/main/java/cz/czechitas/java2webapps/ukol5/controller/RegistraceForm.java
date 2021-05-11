@@ -2,6 +2,7 @@ package cz.czechitas.java2webapps.ukol5.controller;
 import cz.czechitas.java2webapps.ukol5.controller.Pohlavi;
 import cz.czechitas.java2webapps.ukol5.controller.Sport;
 import javax.validation.constraints.*;
+import java.time.LocalDate;
 import java.util.EnumSet;
 
 
@@ -12,8 +13,6 @@ public class RegistraceForm {
     @NotBlank
     private String prijmeni;
     @NotBlank
-    @NotNull
-    @NotEmpty
     private String datum;
     @NotNull
     private Pohlavi pohlavi;

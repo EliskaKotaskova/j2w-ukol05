@@ -1,5 +1,6 @@
 package cz.czechitas.java2webapps.ukol5.controller;
 
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -32,30 +34,26 @@ public class RegistraceController {
   }
 
   @PostMapping("")
-  public Object form(@ModelAttribute("form") RegistraceForm form, BindingResult bindingResult) throws ParseException {
+  public Object form(@ModelAttribute("form") @Valid RegistraceForm form, BindingResult bindingResult) throws ParseException {
+
+    if (bindingResult.hasErrors()) {
+      return "/formular";
+    }
 
     if (form.getSporty() == null ||form.getSporty().size() < 2) {
       bindingResult.rejectValue("sporty", "", "To by nešlo. Musí být vybrané minimálně 2 sporty.");
       return "/formular";
     }
 
-
-      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-      LocalDate localDate = LocalDate.parse(form.getDatum(), formatter);
-      Period period = localDate.until(LocalDate.now());
-      int vek = period.getYears();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    LocalDate localDate = LocalDate.parse(form.getDatum(), formatter);
+    Period period = localDate.until(LocalDate.now());
+    int vek = period.getYears();
 
       if (vek < 9 || vek > 15) {
         bindingResult.rejectValue("datum", "", "To by nešlo. Účastník musí být ve věku 9 - 15 let.");
         return "/formular";
       }
-
-
-
-
-    if (bindingResult.hasErrors()) {
-      return "/formular";
-    }
 
 
     return new ModelAndView("/zaregistrovano")
